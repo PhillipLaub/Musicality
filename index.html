@@ -11,6 +11,113 @@
 
 </head>
 <body>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+          // Initial array of movies
     
+          // displayMovieInfo function re-renders the HTML to display the appropriate content
+          
+    
+        //     var settings = {
+        //     "async": true,
+        //     "crossDomain": true,
+        //     "url": "https://faroo-faroo-web-search.p.rapidapi.com/api?q=adele",
+        //     "method": "GET",
+        //     "headers": {
+        //         "x-rapidapi-host": "faroo-faroo-web-search.p.rapidapi.com",
+        //         "x-rapidapi-key": "25c7168f00msh6ba6c1545772e28p12c1a8jsn1d7782288e43"
+        //     }
+        // }
+
+        //     $.ajax(settings).done(function (response) {
+        //         console.log(response);
+        //     });
+
+        
+
+        var queryURL = "https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*";
+
+          //response call example
+          $.ajax({
+            url: queryURL,
+            method: "GET"
+          }).then(function(response){
+            console.log(response._embedded.events[0].dates.start.localDate)
+
+          } )
+
+          let artistEntry = "Lizzo";
+
+          var queryURL = "https://app.ticketmaster.com/discovery/v2/events?&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&sort=date,asc&keyword=" + artistEntry;
+
+          //response call example 2
+          $.ajax({
+            url: queryURL,
+            method: "GET"
+          }).then(function(response){
+            console.log(response._embedded.events)
+
+            var eventList = response._embedded.events;
+
+           
+
+
+          } )
+          //Searching for a track-id for specific artist
+          var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "https://musixmatchcom-musixmatch.p.rapidapi.com/wsr/1.1/track.search?f_has_lyrics=1&q_track=paradise&q_lyrics=Every%20tear%20a%20waterfall&q_artist=coldplay&q_track_artist=paradise%20coldplay&s_track_rating=desc&q=Every%20tear%20drop%20paradise%20coldpay&page_size=5&page=1",
+              "method": "GET",
+              "headers": {
+                "x-rapidapi-host": "musixmatchcom-musixmatch.p.rapidapi.com",
+                "x-rapidapi-key": "25c7168f00msh6ba6c1545772e28p12c1a8jsn1d7782288e43"
+              }
+            }
+
+            $.ajax(settings).done(function (response) {
+              console.log(response);
+            });
+
+//using track-id from search above to get lyrics
+var settings = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://musixmatchcom-musixmatch.p.rapidapi.com/wsr/1.1/track.lyrics.get?track_id=15449912",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "musixmatchcom-musixmatch.p.rapidapi.com",
+		"x-rapidapi-key": "25c7168f00msh6ba6c1545772e28p12c1a8jsn1d7782288e43"
+	}
+}
+
+$.ajax(settings).done(function (response) {
+	console.log(response);
+});
+
+
+            // var queryURL = "https://faroo-faroo-web-search.p.rapidapi.com/&q=Adele&apikey=25c7168f00msh6ba6c1545772e28p12c1a8jsn1d7782288e43"
+    
+            // // Creating an AJAX call for the specific movie button being clicked
+            // $.ajax({
+            //   url: queryURL,
+            //   method: "GET"
+            // }).then(function(response) {
+            //     return console.log(response)
+    
+        
+            // });
+    
+        
+
+
+
+
+
+
+
+
+    </script>
 </body>
 </html>
