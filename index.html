@@ -11,7 +11,7 @@
 
 </head>
 <body>
-
+  <p id="demo"></p>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript">
           // Initial array of movies
@@ -36,55 +36,40 @@
 
         
 
-        var queryURL = "https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*";
+        // var queryURL = "https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*";
 
-          //response call example
-          $.ajax({
-            url: queryURL,
-            method: "GET"
-          }).then(function(response){
-            console.log(response._embedded.events[0].dates.start.localDate)
+        //   //response call example
+        //   $.ajax({
+        //     url: queryURL,
+        //     method: "GET"
+        //   }).then(function(response){
+        //     console.log(response._embedded.events[0].dates.start.localDate)
 
-          } )
+        //   } )
 
-          let artistEntry = "Lizzo";
+        //   let artistEntry = "Lizzo";
 
-          var queryURL = "https://app.ticketmaster.com/discovery/v2/events?&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&sort=date,asc&keyword=" + artistEntry;
+        //   var queryURL = "https://app.ticketmaster.com/discovery/v2/events?&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&sort=date,asc&keyword=" + artistEntry;
 
-          //response call example 2
-          $.ajax({
-            url: queryURL,
-            method: "GET"
-          }).then(function(response){
-            console.log(response._embedded.events)
+        //   //response call example 2
+        //   $.ajax({
+        //     url: queryURL,
+        //     method: "GET"
+        //   }).then(function(response){
+        //     console.log(response._embedded.events)
 
-            var eventList = response._embedded.events;
+        //     var eventList = response._embedded.events;
 
            
 
 
-          } )
-          //Searching for a track-id for specific artist
-          var settings = {
-              "async": true,
-              "crossDomain": true,
-              "url": "https://musixmatchcom-musixmatch.p.rapidapi.com/wsr/1.1/track.search?f_has_lyrics=1&q_track=paradise&q_lyrics=Every%20tear%20a%20waterfall&q_artist=coldplay&q_track_artist=paradise%20coldplay&s_track_rating=desc&q=Every%20tear%20drop%20paradise%20coldpay&page_size=5&page=1",
-              "method": "GET",
-              "headers": {
-                "x-rapidapi-host": "musixmatchcom-musixmatch.p.rapidapi.com",
-                "x-rapidapi-key": "25c7168f00msh6ba6c1545772e28p12c1a8jsn1d7782288e43"
-              }
-            }
+        //   } )
 
-            $.ajax(settings).done(function (response) {
-              console.log(response);
-            });
-
-//using track-id from search above to get lyrics
-var settings = {
+        // using query for songs search to bring up track-id
+        var settings = {
 	"async": true,
 	"crossDomain": true,
-	"url": "https://musixmatchcom-musixmatch.p.rapidapi.com/wsr/1.1/track.lyrics.get?track_id=15449912",
+	"url": "https://musixmatchcom-musixmatch.p.rapidapi.com/wsr/1.1/matcher.track.get?f_has_lyrics=1&q_artist=coldplay&q_track=paradise",
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "musixmatchcom-musixmatch.p.rapidapi.com",
@@ -94,7 +79,48 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
 	console.log(response);
+
+  let jObj = JSON.parse(response)
+
+  //id of the track "Paradise"
+  console.log(jObj.track_id)
 });
+//           //Searching for lyrics using a track-id for specific artist
+//           var settings = {
+// 	"async": true,
+// 	"crossDomain": true,
+// 	"url": "https://musixmatchcom-musixmatch.p.rapidapi.com/wsr/1.1/track.lyrics.get?track_id=15449912",
+// 	"method": "GET",
+// 	"headers": {
+// 		"x-rapidapi-host": "musixmatchcom-musixmatch.p.rapidapi.com",
+// 		"x-rapidapi-key": "25c7168f00msh6ba6c1545772e28p12c1a8jsn1d7782288e43"
+// 	}
+// }
+
+// $.ajax(settings).done(function (response) {
+// 	console.log(response);
+
+//   let obj = JSON.parse(response)
+
+//   console.log(obj.lyrics_body)
+
+  
+// });
+//           var settings = {
+// 	"async": true,
+// 	"crossDomain": true,
+// 	"url": "https://genius.p.rapidapi.com/search?q=Drake",
+// 	"method": "GET",
+// 	"headers": {
+// 		"x-rapidapi-host": "genius.p.rapidapi.com",
+// 		"x-rapidapi-key": "25c7168f00msh6ba6c1545772e28p12c1a8jsn1d7782288e43"
+// 	}
+// }
+
+// $.ajax(settings).done(function (response) {
+// 	console.log(response.response.hits[0].result.url);
+// });
+
 
 
             // var queryURL = "https://faroo-faroo-web-search.p.rapidapi.com/&q=Adele&apikey=25c7168f00msh6ba6c1545772e28p12c1a8jsn1d7782288e43"
