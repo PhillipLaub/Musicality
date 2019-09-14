@@ -1,75 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>		
-        <title>Your awesome Youtube search engine</title>
-        <meta charset="UTF-8" />					
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Awesome videos!" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <!-- <link rel="stylesheet" href="css/style.css"> -->
-    </head>
-    <body>
-        <header>
-            <h1 class="w100 text-center"><a href="index.html">YouTube Viral Search</a></h1>
-        </header>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <form action="#">
-                    <p><input type="text" id="search" placeholder="Type something..." autocomplete="off" class="form-control" /></p>
-                    <p><input type="submit" value="Search" class="form-control btn btn-primary w100"></p>
-                </form>
-                <div id="results"></div>
-            </div>
-        </div>
-        
-        <!-- scripts -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script>
-        
-        function tplawesome(e,t){res=e;for(var n=0;n<t.length;n++){res=res.replace(/\{\{(.*?)\}\}/g,function(e,r){return t[n][r]})}return res}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-$(function() {
-    $("form").on("submit", function(e) {
-       e.preventDefault();
-       // prepare the request
-       var request = gapi.client.youtube.search.list({
-            part: "snippet",
-            type: "video",
-            q: encodeURIComponent($("#search").val()).replace(/%20/g, "+"),
-            maxResults: 3,
-            order: "viewCount",
-            publishedAfter: "2015-01-01T00:00:00Z"
-       }); 
-       // execute the request
-       request.execute(function(response) {
-          var results = response.result;
-          $("#results").html("");
-          $.each(results.items, function(index, item) {
-            $.get("assets/iframe.html", function(data) {
-                $("#results").append(tplawesome(data, [{"title":item.snippet.title, "videoid":item.id.videoId}]));
-            });
-          });
-          resetVideoHeight();
-       });
-    });
-    
-    $(window).on("resize", resetVideoHeight);
-});
+    <title>Group Project</title>
 
-function resetVideoHeight() {
-    $(".video").css("height", $("#results").width() * 9/16);
+<style>
+.imgcontainer {
+  position: relative;
+  text-align: center;
+  width:20%;
+  height:10%;
+
+}
+.centered {
+  position: absolute;
+  padding-top:2%;
+  padding-bottom:2%;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:100%;
+  font-size:100%;
+  color: #15db95;
+  background: #080f5b;
 }
 
-function init() {
-    gapi.client.setApiKey("AIzaSyChRh-lOF8BN5HVzSNb9EaSjHVocYj3AfY");
-    gapi.client.load("youtube", "v3", function() {
-        // yt api is ready
-    });
-}
+</style>
 
-        </script>
-        <script src="https://apis.google.com/js/client.js?onload=init"></script>
-    </body>
+  </head>
+
+  <body>
+
+
+    <div class="imgcontainer">
+        <a class="addLink1" href=""><img class="picture1" src="" alt="thumbnail image1" style="width:100%;"></a>
+        <a class="addLink1" href=""><div class="centered" id="title1"></div></a>
+      </div>
+
+      <div class="imgcontainer">
+        <a class="addLink2" href=""><img class="picture2" src="" alt="thumbnail image2" style="width:100%;"></a>
+        <a class="addLink2" href=""><div class="centered" id="title2"></div></a>
+      </div>
+
+      <div class="imgcontainer">
+        <a class="addLink3" href=""><img class="picture3" src="" alt="thumbnail image3" style="width:100%;"></a>
+        <a class="addLink3" href=""><div class="centered" id="title3"></div></a>
+      </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      let search = "eminem";
+
+      var settings = {
+        url:
+          "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=" +
+          search +
+          "&key=AIzaSyBJ_C_266AD4cwwpIU4QaBLkH32DrSrjVE",
+        method: "GET"
+      };
+
+      $.ajax(settings).done(function(response) {
+        console.log(response);
+        console.log(response.items[1].id.videoId);
+        // console.log("Video Id: " + videoID1);
+        console.log("Video Title: " + response.items[1].snippet.title);
+        console.log(
+          "Video Thumbnail, high quality: " +
+            response.items[1].snippet.thumbnails.high.url
+        );
+
+        let videoID1 = response.items[1].id.videoId;
+        let thumb1 = response.items[1].snippet.thumbnails.high.url;
+        let vidTitle1 = response.items[1].snippet.title;
+
+        $(".picture1").attr("src", thumb1);
+        $(".addLink1").attr("href", "https://www.youtube.com/watch?v=" + videoID1);
+        $("#title1").text(vidTitle1);
+
+        let videoID2 = response.items[2].id.videoId;
+        let thumb2 = response.items[2].snippet.thumbnails.high.url;
+        let vidTitle2 = response.items[2].snippet.title;
+
+        $(".picture2").attr("src", thumb2);
+        $(".addLink2").attr("href", "https://www.youtube.com/watch?v=" + videoID2);
+        $("#title2").text(vidTitle2);
+
+        let videoID3 = response.items[3].id.videoId;
+        let thumb3 = response.items[3].snippet.thumbnails.high.url;
+        let vidTitle3 = response.items[3].snippet.title;
+
+        $(".picture3").attr("src", thumb3);
+        $(".addLink3").attr("href", "https://www.youtube.com/watch?v=" + videoID3);
+        $("#title3").text(vidTitle3);
+
+      });
+    </script>
+
+  </body>
 </html>
-
-<!--API KEY: AIzaSyChRh-lOF8BN5HVzSNb9EaSjHVocYj3AfY-->
