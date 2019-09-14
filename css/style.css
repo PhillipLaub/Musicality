@@ -20,6 +20,7 @@
    background-color: #0d19a3;
 }
 
+
 #lyrics{
     font-size: 15px;
     color: whitesmoke;
@@ -51,8 +52,8 @@
 
 
 .row {
-    background-color:#0d19a3;
-   
+     /* background-color:#0d19a3;  */
+    background-image: url("../img/background.jpg");
 }
 
 
@@ -64,4 +65,12 @@ body {
 .btn{
     background-color: #0d19a3 !important;
     color: #15db95 !important;
+}
+
+.logo{
+    margin-bottom: -1%;
+    margin-left: 30%;
+}
+h3{
+    margin-left: 35%;
 }
