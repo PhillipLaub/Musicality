@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>		
+        <title>Your awesome Youtube search engine</title>
+        <meta charset="UTF-8" />					
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Awesome videos!" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="css/style.css"> -->
+    </head>
+    <body>
+        <header>
+            <h1 class="w100 text-center"><a href="index.html">YouTube Viral Search</a></h1>
+        </header>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form action="#">
+                    <p><input type="text" id="search" placeholder="Type something..." autocomplete="off" class="form-control" /></p>
+                    <p><input type="submit" value="Search" class="form-control btn btn-primary w100"></p>
+                </form>
+                <div id="results"></div>
+            </div>
+        </div>
+        
+        <!-- scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+        
+        function tplawesome(e,t){res=e;for(var n=0;n<t.length;n++){res=res.replace(/\{\{(.*?)\}\}/g,function(e,r){return t[n][r]})}return res}
+
+$(function() {
+    $("form").on("submit", function(e) {
+       e.preventDefault();
+       // prepare the request
+       var request = gapi.client.youtube.search.list({
+            part: "snippet",
+            type: "video",
+            q: encodeURIComponent($("#search").val()).replace(/%20/g, "+"),
+            maxResults: 3,
+            order: "viewCount",
+            publishedAfter: "2015-01-01T00:00:00Z"
+       }); 
+       // execute the request
+       request.execute(function(response) {
+          var results = response.result;
+          $("#results").html("");
+          $.each(results.items, function(index, item) {
+            $.get("assets/iframe.html", function(data) {
+                $("#results").append(tplawesome(data, [{"title":item.snippet.title, "videoid":item.id.videoId}]));
+            });
+          });
+          resetVideoHeight();
+       });
+    });
+    
+    $(window).on("resize", resetVideoHeight);
+});
+
+function resetVideoHeight() {
+    $(".video").css("height", $("#results").width() * 9/16);
+}
+
+function init() {
+    gapi.client.setApiKey("AIzaSyChRh-lOF8BN5HVzSNb9EaSjHVocYj3AfY");
+    gapi.client.load("youtube", "v3", function() {
+        // yt api is ready
+    });
+}
+
+        </script>
+        <script src="https://apis.google.com/js/client.js?onload=init"></script>
+    </body>
+</html>
+
+<!--API KEY: AIzaSyChRh-lOF8BN5HVzSNb9EaSjHVocYj3AfY-->
