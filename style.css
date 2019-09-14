@@ -1,7 +1,6 @@
 #music-container{
     text-align: center;
-    font-size: 18px;
-    
+    font-size: 18px; 
 }
 
 #song-container{
@@ -17,23 +16,25 @@
 }
 
 .card-body{
-    background-color: #f4e4c1;
-    color: blue;
+   color: whitesmoke;
+   background-color: #0d19a3;
 }
 
 #lyrics{
     font-size: 15px;
+    color: whitesmoke;
         margin: 60px;
         padding: 5px;
 }
 
 #tour{
     margin: 15px;
+    color: #e4c580 !important;
 }
 
 
 .jumbotron{
-    background-color: #0d19a3 !important;
+    background-color: #080f5b !important;
     color: #15db95 !important;
     margin-bottom: 0px !important;
 }
@@ -44,18 +45,23 @@
 }
 
 .form-control{
-    background-color: #0d19a3 !important;
-    outline-color: #0d19a3 !important;
+    background-color: #080f5b !important;
     color : white !important;
 }
 
 
 .row {
-    background-color: blue;
+    background-color:#0d19a3;
+   
 }
 
 
 body {
     margin : -10px !important;
+
 }
 
+.btn{
+    background-color: #0d19a3 !important;
+    color: #15db95 !important;
+}
