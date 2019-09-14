@@ -1,128 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Group Project</title>
-    
-    <!--Small change here-->
-
-</head>
-<body>
-    
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8" />
+    <title>GroupProject</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
   </head>
-
   <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
+    <div class="jumbotron jumbotron-fluid">
+      <div id="jumbo-container">
+        <h1 class="display-4">MUSICALITY</h1>
+        <h3>Bringing the music to YOU!</h3>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        </div>
+      </div>  
+        <input class="btn btn-primary" type="button" value="Drake" />
+        <input class="btn btn-primary" type="button" value="Taylor Swift" />
+        <input class="btn btn-primary" type="button" value="Beyonce" />
+        <input class="btn btn-primary" type="button" value="Queen" />
+        <input class="btn btn-primary" type="submit" value="Ariana Grande" />
+        <input class="btn btn-primary" type="reset" value="Imagine Dragon" />
+      </div>
+    </div>
+    
+      <div class="row">
+        <div class="col-md-6" id="music-container">
+          <div id="Artist"></div>
+          <div class="card" style="width: 18rem;">
+            <img
+              class="card-img-top"
+              src="drake.png"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <p class="card-text">
+                Drake. im the draky of drakes in Canada. the end
+              </p>
+            </div>
+          </div>
+          <div id="tour">
+            <ul class="list-unstyled">
+              <li class="media">
+                <img
+                  class="mr-3"
+                  src=".../64x64"
+                  alt="Generic placeholder image"
+                />
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1">Honda Center-Anaheim CA</h5>
+                  Drake- Canada Tour
+                </div>
+              </li>
+              <li class="media my-4">
+                <img
+                  class="mr-3"
+                  src=".../64x64"
+                  alt="Generic placeholder image"
+                />
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1">Honda Center-Anaheim CA</h5>
+                  Ariana Grande- Mucho Grande Tour
+                </div>
+              </li>
+              <li class="media">
+                <img
+                  class="mr-3"
+                  src=".../64x64"
+                  alt="Generic placeholder image"
+                />
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1">Honda Center-Anaheim CA</h5>
+                  Queen- Not the King Tour
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-      let search = "Led Zeppelin";
-
-      var settings = {
-        async: true,
-        crossDomain: true,
-        url: "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + search,
-        method: "GET",
-        headers: {
-          "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-          "x-rapidapi-key": "167f03e5a5mshd9300ee33644670p1f52ebjsn3544f088cb90"
-        }
-      };
-
-      let artistPic = "";
-      let artistName = "";
-
-      let songTitle1= "";
-      let clip1 = "";
-      let cover1 = "";
-
-      let songTitle2= "";
-      let clip2 = "";
-      let cover2 = "";
-
-      let songTitle3= "";
-      let clip3 = "";
-      let cover3 = "";
-
-      $.ajax(settings).done(function(response) {
-
-        console.log(response);
-         
-        console.log("Song Title of first song listed: " + response.data[0].title);
+        <div class="col-md-6" id="song-container">
+          <div id="Songs">
+            Songs
+            <button type="button" class="btn btn-primary btn-lg">Large button</button>
+            <button type="button" class="btn btn-secondary btn-lg">Large button</button>
         
-        console.log("Link to Deezer Page to Play Song: " + response.data[0].link);
-
-        console.log("MP3 link to 30 second clip: " + response.data[0].preview);
-
-        console.log("Associated album cover: " + response.data[0].album.cover);
-
-        console.log("Artist picture: " + response.data[0].artist.picture);
-
-        console.log("Artist name: " + response.data[0].artist.name);
-
-
-        artistName = response.data[0].artist.name;
-        $("#artist-name").text(artistName);
-
-        artistPic = response.data[0].artist.picture;
-        $("#artist-pic").attr("src", artistPic);
-
-        clip1 = response.data[0].preview;
-        songTitle1 = response.data[0].title;
-        cover1 = response.data[0].album.cover;
-        $("#song-title1").text(songTitle1);
-        $("#audio-source1").attr("src", clip1);
-        $("#cover-pic1").attr("src", cover1);
-
-        clip2 = response.data[1].preview;
-        songTitle2 = response.data[1].title;
-        cover2 = response.data[1].album.cover;
-        $("#song-title2").text(songTitle2);
-        $("#audio-source2").attr("src", clip2);
-        $("#cover-pic2").attr("src", cover2);
-
-        clip3 = response.data[2].preview;
-        songTitle3 = response.data[2].title;
-        cover3 = response.data[2].album.cover;
-        $("#song-title3").text(songTitle3);
-        $("#audio-source3").attr("src", clip3);
-        $("#cover-pic3").attr("src", cover3);
-
-      });
-      
-
-    </script>
-
-    <h1 id="artist-name"></h1>
-    <img id="artist-pic" src="">
-
-    <hr>
-
-    <h3 id="song-title1"></h3>
-    <img id="cover-pic1" src="">
-    <audio id="audio-source1" src="" controls>	
-      <p></p>
-      </audio>
-
-      <hr>
-
-      <h3 id="song-title2"></h3>
-      <img id="cover-pic2" src="">
-    <audio id="audio-source2" src="" controls>	
-      <p></p>
-      </audio>
-
-      <hr>
-      
-      <h3 id="song-title3"></h3>
-      <img id="cover-pic3" src="">
-    <audio id="audio-source3" src="" controls>	
-      <p></p>
-      </audio>
-
-      <hr>
+          </div>
+          <div id="lyrics">
+            <div class="media">
+              <img class="mr-3" src="bruno.jpg" alt="Generic placeholder image">
+              <div class="media-body">
+                <h5 class="mt-0">Bruno Mars: Thats What I Like</h5>
+                <div class="card">
+                  <div class="card-body">
+                    <p>Gold jewelry shining so bright
+                      Strawberry champagne on ice
+                      Lucky for you, that's what I like, that's what I like
+                      Lucky for you, that's what I like, that's what I like
+                      Sex by the fire at night
+                      Silk sheets and diamonds all white
+                      Lucky for you, that's what I like, that's what I like
+                      Lucky for you, that's what I like, that's what I like</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+    </div>
   </body>
 </html>

@@ -1,0 +1,61 @@
+#music-container{
+    text-align: center;
+    font-size: 18px;
+    
+}
+
+#song-container{
+    text-align: center;
+    float: right;
+    font-size: 18px;
+    color: #15db95;   
+}
+
+.container{
+    background-color: #080f5b !important;
+    color: #15db95;
+}
+
+.card-body{
+    background-color: #f4e4c1;
+    color: blue;
+}
+
+#lyrics{
+    font-size: 15px;
+        margin: 60px;
+        padding: 5px;
+}
+
+#tour{
+    margin: 15px;
+}
+
+
+.jumbotron{
+    background-color: #0d19a3 !important;
+    color: #15db95 !important;
+    margin-bottom: 0px !important;
+}
+
+.jumbotron-fluid {
+    padding-right: 40px !important;
+    padding-left: 40px !important;
+}
+
+.form-control{
+    background-color: #0d19a3 !important;
+    outline-color: #0d19a3 !important;
+    color : white !important;
+}
+
+
+.row {
+    background-color: blue;
+}
+
+
+body {
+    margin : -10px !important;
+}
+
