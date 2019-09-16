@@ -14,127 +14,69 @@
   <p id="demo"></p>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript">
-          // Initial array of movies
-    
-          // displayMovieInfo function re-renders the HTML to display the appropriate content
+
+jQuery.ajaxPrefilter(function(options) {
+    if (options.crossDomain && jQuery.support.cors) {
+        options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+    }
+});
           
-    
-        //     var settings = {
-        //     "async": true,
-        //     "crossDomain": true,
-        //     "url": "https://faroo-faroo-web-search.p.rapidapi.com/api?q=adele",
-        //     "method": "GET",
-        //     "headers": {
-        //         "x-rapidapi-host": "faroo-faroo-web-search.p.rapidapi.com",
-        //         "x-rapidapi-key": "25c7168f00msh6ba6c1545772e28p12c1a8jsn1d7782288e43"
-        //     }
-        // }
-
-        //     $.ajax(settings).done(function (response) {
-        //         console.log(response);
-        //     });
-
-        
-
-        // var queryURL = "https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*";
-
-        //   //response call example
-        //   $.ajax({
-        //     url: queryURL,
-        //     method: "GET"
-        //   }).then(function(response){
-        //     console.log(response._embedded.events[0].dates.start.localDate)
-
-        //   } )
-
-        //   let artistEntry = "Lizzo";
-
-        //   var queryURL = "https://app.ticketmaster.com/discovery/v2/events?&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&sort=date,asc&keyword=" + artistEntry;
-
-        //   //response call example 2
-        //   $.ajax({
-        //     url: queryURL,
-        //     method: "GET"
-        //   }).then(function(response){
-        //     console.log(response._embedded.events)
-
-        //     var eventList = response._embedded.events;
-
-           
+          // look for concert dates
 
 
-        //   } )
+          // let artistEntry = "Lizzo";
 
-        // using query for songs search to bring up track-id
-        var settings = {
+          // var queryURL = "https://app.ticketmaster.com/discovery/v2/events?&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&sort=date,asc&keyword=" + artistEntry;
+
+          // //response call for concert events
+          // $.ajax({
+          //   url: queryURL,
+          //   method: "GET"
+          // }).then(function(response){
+          //   console.log(response._embedded.events)
+
+          //   var eventList = response._embedded.events;
+          // });
+
+
+            // search lyrics of song by artist name and name of some
+          // let artistEntry = "coldplay"
+          // let trackEntry = "paradise"
+
+          // var queryURL = "https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?apikey=049c017588dad9f5ab47ce0186fc9eb1&q_artist=" + artistEntry + "&q_track=" + trackEntry
+          //   $.ajax({
+          //     url: queryURL,
+          //     method: "GET"
+          //   }).then(function(response){
+
+          //     let jObj = JSON.parse(response)
+          //     console.log(jObj.message.body.lyrics.lyrics_body)
+          //   })
+
+
+
+// use this to get full lyrics for song of chosen artist
+
+ let artistQuery = "drake";
+ let songChoice = "passionfruit"
+
+          var settings = {
 	"async": true,
 	"crossDomain": true,
-	"url": "https://musixmatchcom-musixmatch.p.rapidapi.com/wsr/1.1/matcher.track.get?f_has_lyrics=1&q_artist=coldplay&q_track=paradise",
+	"url": "https://genius.p.rapidapi.com/search?q=" + artistQuery + songChoice,
 	"method": "GET",
 	"headers": {
-		"x-rapidapi-host": "musixmatchcom-musixmatch.p.rapidapi.com",
+		"x-rapidapi-host": "genius.p.rapidapi.com",
 		"x-rapidapi-key": "25c7168f00msh6ba6c1545772e28p12c1a8jsn1d7782288e43"
 	}
 }
 
 $.ajax(settings).done(function (response) {
-	console.log(response);
-
-  let jObj = JSON.parse(response)
-
-  //id of the track "Paradise"
-  console.log(jObj.track_id)
+	console.log(response.response.hits[0].result.url);
 });
-//           //Searching for lyrics using a track-id for specific artist
-//           var settings = {
-// 	"async": true,
-// 	"crossDomain": true,
-// 	"url": "https://musixmatchcom-musixmatch.p.rapidapi.com/wsr/1.1/track.lyrics.get?track_id=15449912",
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "musixmatchcom-musixmatch.p.rapidapi.com",
-// 		"x-rapidapi-key": "25c7168f00msh6ba6c1545772e28p12c1a8jsn1d7782288e43"
-// 	}
-// }
-
-// $.ajax(settings).done(function (response) {
-// 	console.log(response);
-
-//   let obj = JSON.parse(response)
-
-//   console.log(obj.lyrics_body)
-
-  
-// });
-//           var settings = {
-// 	"async": true,
-// 	"crossDomain": true,
-// 	"url": "https://genius.p.rapidapi.com/search?q=Drake",
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "genius.p.rapidapi.com",
-// 		"x-rapidapi-key": "25c7168f00msh6ba6c1545772e28p12c1a8jsn1d7782288e43"
-// 	}
-// }
-
-// $.ajax(settings).done(function (response) {
-// 	console.log(response.response.hits[0].result.url);
-// });
 
 
 
-            // var queryURL = "https://faroo-faroo-web-search.p.rapidapi.com/&q=Adele&apikey=25c7168f00msh6ba6c1545772e28p12c1a8jsn1d7782288e43"
-    
-            // // Creating an AJAX call for the specific movie button being clicked
-            // $.ajax({
-            //   url: queryURL,
-            //   method: "GET"
-            // }).then(function(response) {
-            //     return console.log(response)
-    
-        
-            // });
-    
         
 
 
