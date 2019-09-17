@@ -7,9 +7,9 @@ jQuery.ajaxPrefilter(function(options) {
           // look for concert dates
 
 
-          let artistEntry = "drake";
+          let artistChoice = "drake";
 
-          var queryURL = "https://app.ticketmaster.com/discovery/v2/events?&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&sort=date,asc&keyword=" + artistEntry;
+          var queryURL = "https://app.ticketmaster.com/discovery/v2/events?&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&sort=date,asc&keyword=" + artistChoice;
 
           //response call for concert events
           $.ajax({
@@ -19,8 +19,14 @@ jQuery.ajaxPrefilter(function(options) {
             console.log(response)
             //date of concert
             console.log(response._embedded.events[0].dates.start.localDate);
+            var concertDate = response._embedded.events[0].dates.start.localDate;
+            console.log(moment(concertDate).format("MMMM Do YYYY")); 
+
             //time of concert?
             console.log(response._embedded.events[0].dates.start.localTime);
+            var concertTime = response._embedded.events[0].dates.start.localTime;
+            console.log(moment(concertTime, 'HH:mm').format('hh:mm a'));
+
             //name of concert/tour
             console.log(response._embedded.events[0].name);
             // venue of concert
@@ -45,8 +51,8 @@ jQuery.ajaxPrefilter(function(options) {
 
 
             // search lyrics of song by artist name and track name
-          let artistEntry = "coldplay"
-          let trackEntry = "paradise"
+          let artistEntry = "coldplay";
+          let trackEntry = "paradise";
 
           var queryURL = "https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?apikey=049c017588dad9f5ab47ce0186fc9eb1&q_artist=" + artistEntry + "&q_track=" + trackEntry
             $.ajax({
