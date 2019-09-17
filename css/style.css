@@ -84,3 +84,27 @@ h5, p {
 .btn btn-primary {
     font-family: 'Muli', sans-serif;
 }
+
+audio {
+    width:120px;
+    display:block;
+  }
+ /* h5 {
+  font-size: 0.8rem;
+ } */ 
+/* Need to change to specific id */
+
+
+ #artist-pic {
+   height:300px;
+   width:300px;
+ }
+
+ .imgcontainer {
+    text-align: center; 
+    width:120px;
+  } 
+  #videos {
+    border: 1px solid black;
+  }
+  

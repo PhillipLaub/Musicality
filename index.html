@@ -86,9 +86,30 @@
 
         <div class="col-md-6" id="song-container">
           <div id="Songs">
-            Songs
-            
-            
+            <section>
+  
+              <div class="row">
+                <div class="col-sm-4">
+                    <h5 id="song-title1"></h5>
+                    <img id="cover-pic1" alt="album cover1" src="">
+                    <audio id="audio-source1" src="" controls>	
+                      </audio>
+                </div>
+                <div class="col-sm-4">
+                    <h5 id="song-title2"></h5>
+                    <img id="cover-pic2" alt="album cover2" src="">
+                    <audio id="audio-source2" src="" controls>	
+                      </audio>
+                </div>
+                <div class="col-sm-4">
+                    <h5 id="song-title3"></h5>
+                    <img id="cover-pic3" alt="album cover3" src="">
+                    <audio id="audio-source3" src="" controls>	
+                      </audio>
+                </div>
+              </div>
+
+              </section>
         
           </div>
           <div id="lyrics">
@@ -111,7 +132,27 @@
             </div>
           </div>
           <div id="video">
-            Videos
+            <section id="videos">
+              <div class="row">
+              <div class="imgcontainer col-sm-2">
+                  <a class="addLink1" href=""><img class="picture1" src="" alt="thumbnail image1" style="width:100%;"></a>
+                  
+                  <a class="addLink1" href=""><div class="centered" id="title1"></div></a>
+                </div>
+          
+                <div class="imgcontainer col-sm-2">
+                  <a class="addLink2" href=""><img class="picture2" src="" alt="thumbnail image2" style="width:100%;"></a>
+                  
+                  <a class="addLink2" href=""><div class="centered" id="title2"></div></a>
+                </div>
+          
+                <div class="imgcontainer col-sm-2">
+                  <a class="addLink3" href=""><img class="picture3" src="" alt="thumbnail image3" style="width:100%;"></a>
+                  
+                  <a class="addLink3" href=""><div class="centered" id="title3"></div></a>
+                </div>
+              </div>
+            </section>
             
             
         
@@ -119,5 +160,107 @@
         </div>
     
     </div>
+
+
+  <!-- Deezer API -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      let search = "eminem";
+      var settings = {
+        async: true,
+        crossDomain: true,
+        url: "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + search,
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+          "x-rapidapi-key": "167f03e5a5mshd9300ee33644670p1f52ebjsn3544f088cb90"
+        }
+      };
+      let artistPic = "";
+      let artistName = "";
+      let songTitle1= "";
+      let clip1 = "";
+      let cover1 = "";
+      let songTitle2= "";
+      let clip2 = "";
+      let cover2 = "";
+      let songTitle3= "";
+      let clip3 = "";
+      let cover3 = "";
+      $.ajax(settings).done(function(response) {
+        console.log(response);
+         
+        console.log("Song Title of first song listed: " + response.data[0].title);
+        
+        console.log("Link to Deezer Page to Play Song: " + response.data[0].link);
+        console.log("MP3 link to 30 second clip: " + response.data[0].preview);
+        console.log("Associated album cover: " + response.data[0].album.cover);
+        console.log("Artist picture: " + response.data[0].artist.picture_big);
+        console.log("Artist name: " + response.data[0].artist.name);
+        artistName = response.data[0].artist.name;
+        $("#artist-name").text(artistName);
+        artistPic = response.data[0].artist.picture_big;
+        $("#artist-pic").attr("src", artistPic);
+        clip1 = response.data[0].preview;
+        songTitle1 = response.data[0].title;
+        cover1 = response.data[0].album.cover;
+        $("#song-title1").text(songTitle1);
+        $("#audio-source1").attr("src", clip1);
+        $("#cover-pic1").attr("src", cover1);
+        clip2 = response.data[1].preview;
+        songTitle2 = response.data[1].title;
+        cover2 = response.data[1].album.cover;
+        $("#song-title2").text(songTitle2);
+        $("#audio-source2").attr("src", clip2);
+        $("#cover-pic2").attr("src", cover2);
+        clip3 = response.data[2].preview;
+        songTitle3 = response.data[2].title;
+        cover3 = response.data[2].album.cover;
+        $("#song-title3").text(songTitle3);
+        $("#audio-source3").attr("src", clip3);
+        $("#cover-pic3").attr("src", cover3);
+      });
+
+
+      //YouTube API
+      var settings = {
+        url:
+          "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=" +
+          search +
+          "&key=AIzaSyBJ_C_266AD4cwwpIU4QaBLkH32DrSrjVE",
+        method: "GET"
+      };
+      $.ajax(settings).done(function(response) {
+        console.log(response);
+        console.log(response.items[1].id.videoId);
+        // console.log("Video Id: " + videoID1);
+        console.log("Video Title: " + response.items[1].snippet.title);
+        console.log(
+          "Video Thumbnail, high quality: " +
+            response.items[1].snippet.thumbnails.high.url
+        );
+        let videoID1 = response.items[1].id.videoId;
+        let thumb1 = response.items[1].snippet.thumbnails.high.url;
+        let vidTitle1 = response.items[1].snippet.title;
+        $(".picture1").attr("src", thumb1);
+        $(".addLink1").attr("href", "https://www.youtube.com/watch?v=" + videoID1);
+        $("#title1").text(vidTitle1);
+        let videoID2 = response.items[2].id.videoId;
+        let thumb2 = response.items[2].snippet.thumbnails.high.url;
+        let vidTitle2 = response.items[2].snippet.title;
+        $(".picture2").attr("src", thumb2);
+        $(".addLink2").attr("href", "https://www.youtube.com/watch?v=" + videoID2);
+        $("#title2").text(vidTitle2);
+        let videoID3 = response.items[3].id.videoId;
+        let thumb3 = response.items[3].snippet.thumbnails.high.url;
+        let vidTitle3 = response.items[3].snippet.title;
+        $(".picture3").attr("src", thumb3);
+        $(".addLink3").attr("href", "https://www.youtube.com/watch?v=" + videoID3);
+        $("#title3").text(vidTitle3);
+      });
+      
+      
+    </script>
+
   </body>
 </html>
