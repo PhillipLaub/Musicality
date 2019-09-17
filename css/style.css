@@ -73,4 +73,14 @@ body {
 }
 h3{
     margin-left: 35%;
+    font-family: 'Ovo', serif;
+    letter-spacing: 1px;
+}
+
+h5, p {
+    font-family: 'Muli', sans-serif;
+}
+
+.btn btn-primary {
+    font-family: 'Muli', sans-serif;
 }
