@@ -33,13 +33,34 @@ jQuery.ajaxPrefilter(function(options) {
           //   url: queryURL,
           //   method: "GET"
           // }).then(function(response){
-          //   console.log(response._embedded.events)
+          //   //date of concert
+          //   console.log(response._embedded.events[0].dates.start.localDate);
+          //   //time of concert?
+          //   console.log(response._embedded.events[0].dates.start.localTime);
+          //   //name of concert/tour
+          //   console.log(response._embedded.events[0].name);
+          //   // venue of concert
+          //   console.log(response._embedded.events[0]._embedded.venues[0].name);
+          //   // url to order tickets
+          //   console.log(response._embedded.events[0].url);
+             
+          //   console.log("------------------------------") 
+          //   console.log("------------------------------")
 
-          //   var eventList = response._embedded.events;
+          //   console.log(response._embedded.events)
+          //   var concertEvent = response._embedded.events;
+          //   concertEvent.length -= 15;
+          //   for (var i = 0; i < concertEvent.length; i++) {
+              
+          //     console.log(concertEvent[i].url);
+              
+          //   };
+
+            
           // });
 
 
-            // search lyrics of song by artist name and name of some
+            // search lyrics of song by artist name and track name
           // let artistEntry = "coldplay"
           // let trackEntry = "paradise"
 
@@ -73,6 +94,8 @@ jQuery.ajaxPrefilter(function(options) {
 
 $.ajax(settings).done(function (response) {
 	console.log(response.response.hits[0].result.url);
+
+
 });
 
 
