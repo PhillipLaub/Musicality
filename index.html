@@ -24,40 +24,41 @@ jQuery.ajaxPrefilter(function(options) {
           // look for concert dates
 
 
-          // let artistEntry = "Lizzo";
+          let artistEntry = "drake";
 
-          // var queryURL = "https://app.ticketmaster.com/discovery/v2/events?&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&sort=date,asc&keyword=" + artistEntry;
+          var queryURL = "https://app.ticketmaster.com/discovery/v2/events?&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&sort=date,asc&keyword=" + artistEntry;
 
-          // //response call for concert events
-          // $.ajax({
-          //   url: queryURL,
-          //   method: "GET"
-          // }).then(function(response){
-          //   //date of concert
-          //   console.log(response._embedded.events[0].dates.start.localDate);
-          //   //time of concert?
-          //   console.log(response._embedded.events[0].dates.start.localTime);
-          //   //name of concert/tour
-          //   console.log(response._embedded.events[0].name);
-          //   // venue of concert
-          //   console.log(response._embedded.events[0]._embedded.venues[0].name);
-          //   // url to order tickets
-          //   console.log(response._embedded.events[0].url);
+          //response call for concert events
+          $.ajax({
+            url: queryURL,
+            method: "GET"
+          }).then(function(response){
+            console.log(response)
+            //date of concert
+            console.log(response._embedded.events[0].dates.start.localDate);
+            //time of concert?
+            console.log(response._embedded.events[0].dates.start.localTime);
+            //name of concert/tour
+            console.log(response._embedded.events[0].name);
+            // venue of concert
+            console.log(response._embedded.events[0]._embedded.venues[0].name);
+            // url to order tickets
+            console.log(response._embedded.events[0].url);
              
-          //   console.log("------------------------------") 
-          //   console.log("------------------------------")
+            console.log("------------------------------") 
+            console.log("------------------------------")
 
-          //   console.log(response._embedded.events)
-          //   var concertEvent = response._embedded.events;
-          //   concertEvent.length -= 15;
-          //   for (var i = 0; i < concertEvent.length; i++) {
+            console.log(response._embedded.events)
+            var concertEvent = response._embedded.events;
+            concertEvent.length -= 15;
+            for (var i = 0; i < concertEvent.length; i++) {
+              //multiple ticket order links [5x]
+              console.log(concertEvent[i].url);
               
-          //     console.log(concertEvent[i].url);
-              
-          //   };
+            };
 
             
-          // });
+          });
 
 
             // search lyrics of song by artist name and track name
