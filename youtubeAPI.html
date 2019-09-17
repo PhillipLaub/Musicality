@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+
+    <title>Group Project</title>
+
+<style>
+ .imgcontainer {
+  text-align: center; 
+  width:120px;
+} 
+
+#videos {
+  border: 1px solid black;
+}
+
+section {
+  padding-top:5px;
+}
+
+
+
+
+
+
+
+/* 
+.centered {
+  position: absolute;
+  padding-top:2%;
+  padding-bottom:2%;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:100%;
+  font-size:100%;
+  color: #15db95;
+  background: #080f5b;
+}  */
+
+</style>
+
+  </head>
+
+  <body>
+    <section id="videos">
+    <div class="row">
+    <div class="imgcontainer col-sm-2">
+        <a class="addLink1" href=""><img class="picture1" src="" alt="thumbnail image1" style="width:100%;"></a>
+        
+        <a class="addLink1" href=""><div class="centered" id="title1"></div></a>
+      </div>
+
+      <div class="imgcontainer col-sm-2">
+        <a class="addLink2" href=""><img class="picture2" src="" alt="thumbnail image2" style="width:100%;"></a>
+        
+        <a class="addLink2" href=""><div class="centered" id="title2"></div></a>
+      </div>
+
+      <div class="imgcontainer col-sm-2">
+        <a class="addLink3" href=""><img class="picture3" src="" alt="thumbnail image3" style="width:100%;"></a>
+        
+        <a class="addLink3" href=""><div class="centered" id="title3"></div></a>
+      </div>
+    </div>
+  </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        //eminem is a placeholder, will be replaced with user input
+      let search = "eminem";
+
+      var settings = {
+        url:
+          "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=" +
+          search +
+          "&key=AIzaSyBJ_C_266AD4cwwpIU4QaBLkH32DrSrjVE",
+        method: "GET"
+      };
+
+      $.ajax(settings).done(function(response) {
+        console.log(response);
+        console.log(response.items[1].id.videoId);
+        // console.log("Video Id: " + videoID1);
+        console.log("Video Title: " + response.items[1].snippet.title);
+        console.log(
+          "Video Thumbnail, high quality: " +
+            response.items[1].snippet.thumbnails.high.url
+        );
+
+        let videoID1 = response.items[1].id.videoId;
+        let thumb1 = response.items[1].snippet.thumbnails.high.url;
+        let vidTitle1 = response.items[1].snippet.title;
+
+        $(".picture1").attr("src", thumb1);
+        $(".addLink1").attr("href", "https://www.youtube.com/watch?v=" + videoID1);
+        $("#title1").text(vidTitle1);
+
+        let videoID2 = response.items[2].id.videoId;
+        let thumb2 = response.items[2].snippet.thumbnails.high.url;
+        let vidTitle2 = response.items[2].snippet.title;
+
+        $(".picture2").attr("src", thumb2);
+        $(".addLink2").attr("href", "https://www.youtube.com/watch?v=" + videoID2);
+        $("#title2").text(vidTitle2);
+
+        let videoID3 = response.items[3].id.videoId;
+        let thumb3 = response.items[3].snippet.thumbnails.high.url;
+        let vidTitle3 = response.items[3].snippet.title;
+
+        $(".picture3").attr("src", thumb3);
+        $(".addLink3").attr("href", "https://www.youtube.com/watch?v=" + videoID3);
+        $("#title3").text(vidTitle3);
+
+      });
+    </script>
+
+  </body>
+</html>

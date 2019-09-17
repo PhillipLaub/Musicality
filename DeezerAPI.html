@@ -7,8 +7,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Group Project</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <style>
     
-    <!--Small change here-->
+    audio {
+      width:120px;
+      display:block;
+    }
+
+   h5 {
+    font-size: 0.8rem;
+   }
+
+   section {
+     border:1px solid black;
+   }
+
+   #artist-pic {
+     height:300px;
+     width:300px;
+   }
+
+  
+    </style>
 
 </head>
 <body>
@@ -16,10 +44,65 @@
   </head>
 
   <body>
+
+      <h1 id="artist-name"></h1>
+      <img id="artist-pic" alt="artist headshot" src="">
+  
+      <hr>
+  
+  
+      <section>
+  
+      <div class="row">
+        <div class="col-sm-2">
+            <h5 id="song-title1"></h5>
+            <img id="cover-pic1" alt="album cover1" src="">
+            <audio id="audio-source1" src="" controls>	
+              </audio>
+        </div>
+        <div class="col-sm-2">
+            <h5 id="song-title2"></h5>
+            <img id="cover-pic2" alt="album cover2" src="">
+            <audio id="audio-source2" src="" controls>	
+              </audio>
+        </div>
+        <div class="col-sm-2">
+            <h5 id="song-title3"></h5>
+            <img id="cover-pic3" alt="album cover3" src="">
+            <audio id="audio-source3" src="" controls>	
+              </audio>
+        </div>
+      </div>
+      <!-- <h5 id="song-title1"></h5>
+      <img id="cover-pic1" src="">
+      <audio id="audio-source1" src="" controls>	
+        </audio>
+  
+        <hr>
+  
+        <h3 id="song-title2"></h3>
+        <img id="cover-pic2" src="">
+      <audio id="audio-source2" src="" controls>	
+        <p></p>
+        </audio>
+  
+        <hr>
+        
+        <h3 id="song-title3"></h3>
+        <img id="cover-pic3" src="">
+      <audio id="audio-source3" src="" controls>	
+        <p></p>
+        </audio>
+  
+        <hr> -->
+      </section>
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
 
-      let search = "Led Zeppelin";
+      let search = "eminem";
 
       var settings = {
         async: true,
@@ -59,7 +142,7 @@
 
         console.log("Associated album cover: " + response.data[0].album.cover);
 
-        console.log("Artist picture: " + response.data[0].artist.picture);
+        console.log("Artist picture: " + response.data[0].artist.picture_big);
 
         console.log("Artist name: " + response.data[0].artist.name);
 
@@ -67,7 +150,7 @@
         artistName = response.data[0].artist.name;
         $("#artist-name").text(artistName);
 
-        artistPic = response.data[0].artist.picture;
+        artistPic = response.data[0].artist.picture_big;
         $("#artist-pic").attr("src", artistPic);
 
         clip1 = response.data[0].preview;
@@ -96,33 +179,6 @@
 
     </script>
 
-    <h1 id="artist-name"></h1>
-    <img id="artist-pic" src="">
-
-    <hr>
-
-    <h3 id="song-title1"></h3>
-    <img id="cover-pic1" src="">
-    <audio id="audio-source1" src="" controls>	
-      <p></p>
-      </audio>
-
-      <hr>
-
-      <h3 id="song-title2"></h3>
-      <img id="cover-pic2" src="">
-    <audio id="audio-source2" src="" controls>	
-      <p></p>
-      </audio>
-
-      <hr>
-      
-      <h3 id="song-title3"></h3>
-      <img id="cover-pic3" src="">
-    <audio id="audio-source3" src="" controls>	
-      <p></p>
-      </audio>
-
-      <hr>
+    
   </body>
 </html>
