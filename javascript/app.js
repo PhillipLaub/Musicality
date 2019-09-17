@@ -7,7 +7,7 @@ jQuery.ajaxPrefilter(function(options) {
         // look for concert dates
 
 
-        let artistChoice = "drake";
+        let artistChoice = "drake rap";
 
         var queryURL = "https://app.ticketmaster.com/discovery/v2/events?&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&sort=date,asc&keyword=" + artistChoice;
 
@@ -22,17 +22,56 @@ jQuery.ajaxPrefilter(function(options) {
           var concertDate = response._embedded.events[0].dates.start.localDate;
           console.log(moment(concertDate).format("MMMM Do YYYY")); 
 
+          var concertDiv = $("<div class = 'concEvent'>");
+
+          var pConcert = $("<p>").text("Date: " + rating);
+
+          concertEvent.append(pConcert);
+
           //time of concert?
           console.log(response._embedded.events[0].dates.start.localTime);
           var concertTime = response._embedded.events[0].dates.start.localTime;
           console.log(moment(concertTime, 'HH:mm').format('hh:mm a'));
 
+          var pTime = $("<p>").text("Time of Event: " + concertTime );
+
+          concertDiv.append(pTime);
           //name of concert/tour
           console.log(response._embedded.events[0].name);
+          var tourName = response._embedded.events[0].name;
+
+          var pTour = $("<p>").text("Tour: " + tourName);
+          concertDiv.append(pTour);
+
           // venue of concert
           console.log(response._embedded.events[0]._embedded.venues[0].name);
+
+          var venueName = response._embedded.events[0]._embedded.venues[0].name;
+
+          var pVenue = $("<p>").text("Venue: " + venueName);
+
+          concertDiv.append(pVenue);
+
           // url to order tickets
           console.log(response._embedded.events[0].url);
+
+          var tickOrd = response._embedded.events[0].url;
+
+          var pTicket = $("<p>").text("Order tickets here: " + tickOrd);
+
+          concertDiv.append(pTicket);
+
+          $("#concertEvent").append(concertDiv);
+
+          var musicRow = $("<tr>").append(
+            $("<td>").text(concertDate),
+            $("<td>").text(concertTime),
+            $("<td>").text(tourName),
+            $("<td>").text(venueName),
+            $("<td>").text(tickOrd),
+        );
+
+        $("#concertDate > tbody").append(musicRow)
            
           console.log("------------------------------") 
           console.log("------------------------------")
