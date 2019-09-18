@@ -126,48 +126,48 @@ console.log(response.response.hits[0].result.url);
 
 });
 
-// create buttons dynamically 
+// // create buttons dynamically 
 
-var artists = ["Drake", "Eminem", "Taylor Swift", "Beyonce", "Queen", "Ariana Grande"];
+// var artists = ["Drake", "Eminem", "Taylor Swift", "Beyonce", "Queen", "Ariana Grande"];
 
-function createButtons() {
+// function createButtons() {
 
-    // Empties the movies prior to adding new gifs
-    // (this is necessary otherwise we will have repeat buttons)
-    $("#artist-view").empty();
+//     // Empties the movies prior to adding new gifs
+//     // (this is necessary otherwise we will have repeat buttons)
+//     $("#artist-view").empty();
 
-    // Looping through the array of topics(movies/shows)
-    for (var i = 0; i < artists.length; i++) {
+//     // Looping through the array of topics(movies/shows)
+//     for (var i = 0; i < artists.length; i++) {
 
-        // Then dynamicaly generating buttons for each topic in the array
-        var button = $("<button>");
-        // Adding multiple classes movie div to button (only one class being applied)
-        button.addClass("artist");
-        button.addClass("btn btn-primary");
-        button.addClass("m-1");
+//         // Then dynamicaly generating buttons for each topic in the array
+//         var button = $("<button>");
+//         // Adding multiple classes movie div to button (only one class being applied)
+//         button.addClass("artist");
+//         button.addClass("btn btn-primary");
+//         button.addClass("m-1");
 
 
-        // Adding a data-attribute
-        button.attr("data-name", artists[i]);
-        // Providing the initial button text
-        button.text(artists[i]);
-        // Adding the button to the HTML
-        $("#artist-view").append(button);
-    };
-};
+//         // Adding a data-attribute
+//         button.attr("data-name", artists[i]);
+//         // Providing the initial button text
+//         button.text(artists[i]);
+//         // Adding the button to the HTML
+//         $("#artist-view").append(button);
+//     };
+// };
 
-$("#addArtist").on("click", function (event) {
-  // Preventing the buttons default behavior when clicked (which is submitting a form)
-  event.preventDefault();
-  // This line grabs the input from the textbox
-  var artist = $("#artist-input").val().trim();
+// $("#addArtist").on("click", function (event) {
+//   // Preventing the buttons default behavior when clicked (which is submitting a form)
+//   event.preventDefault();
+//   // This line grabs the input from the textbox
+//   var artist = $("#artist-input").val().trim();
 
-  // Adding the movie from the textbox to our array
-  artists.push(artist);
+//   // Adding the movie from the textbox to our array
+//   artists.push(artist);
 
-  //rerun createButtons with new additions to array
-  createButtons();
+//   //rerun createButtons with new additions to array
+//   createButtons();
 
-});
+// });
 
-createButtons();
+// createButtons();
