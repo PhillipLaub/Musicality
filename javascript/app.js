@@ -6,7 +6,6 @@ jQuery.ajaxPrefilter(function(options) {
         
         // look for concert dates
 
-
         let artistChoice = "drake rap";
 
         var queryURL = "https://app.ticketmaster.com/discovery/v2/events?&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&sort=date,asc&keyword=" + artistChoice;
@@ -126,3 +125,49 @@ console.log(response.response.hits[0].result.url);
 
 
 });
+
+// create buttons dynamically 
+
+var artist = ["Drake", "Eminem", "Taylor Swift", "Beyonce", "Queen", "Ariana Grande"];
+
+function createButtons() {
+
+    // Empties the movies prior to adding new gifs
+    // (this is necessary otherwise we will have repeat buttons)
+    $("#artist-view").empty();
+
+    // Looping through the array of topics(movies/shows)
+    for (var i = 0; i < artist.length; i++) {
+
+        // Then dynamicaly generating buttons for each topic in the array
+        var button = $("<button>");
+        // Adding multiple classes movie div to button (only one class being applied)
+        button.addClass("artist");
+        button.addClass("btn btn-primary");
+        button.addClass("m-1");
+
+
+        // Adding a data-attribute
+        button.attr("data-name", artist[i]);
+        // Providing the initial button text
+        button.text(artist[i]);
+        // Adding the button to the HTML
+        $("#artist-view").append(button);
+    };
+};
+
+$("#addArtist").on("click", function (event) {
+  // Preventing the buttons default behavior when clicked (which is submitting a form)
+  event.preventDefault();
+  // This line grabs the input from the textbox
+  var artist = $("#artist-input").val().trim();
+
+  // Adding the movie from the textbox to our array
+  topics.push(artist);
+
+  //rerun createButtons with new additions to array
+  createButtons();
+
+});
+
+createButtons();
