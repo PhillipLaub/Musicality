@@ -128,7 +128,7 @@ console.log(response.response.hits[0].result.url);
 
 // create buttons dynamically 
 
-var artist = ["Drake", "Eminem", "Taylor Swift", "Beyonce", "Queen", "Ariana Grande"];
+var artists = ["Drake", "Eminem", "Taylor Swift", "Beyonce", "Queen", "Ariana Grande"];
 
 function createButtons() {
 
@@ -137,7 +137,7 @@ function createButtons() {
     $("#artist-view").empty();
 
     // Looping through the array of topics(movies/shows)
-    for (var i = 0; i < artist.length; i++) {
+    for (var i = 0; i < artists.length; i++) {
 
         // Then dynamicaly generating buttons for each topic in the array
         var button = $("<button>");
@@ -148,9 +148,9 @@ function createButtons() {
 
 
         // Adding a data-attribute
-        button.attr("data-name", artist[i]);
+        button.attr("data-name", artists[i]);
         // Providing the initial button text
-        button.text(artist[i]);
+        button.text(artists[i]);
         // Adding the button to the HTML
         $("#artist-view").append(button);
     };
@@ -163,7 +163,7 @@ $("#addArtist").on("click", function (event) {
   var artist = $("#artist-input").val().trim();
 
   // Adding the movie from the textbox to our array
-  topics.push(artist);
+  artists.push(artist);
 
   //rerun createButtons with new additions to array
   createButtons();
