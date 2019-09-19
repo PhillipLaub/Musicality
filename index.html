@@ -44,17 +44,6 @@
             <br>
 
 
-
-
-            <!-- </div>  
-        <input class="btn btn-primary" type="button" value="Drake" />
-        <input class="btn btn-primary" type="button" value="Taylor Swift" />
-        <input class="btn btn-primary" type="button" value="Beyonce" />
-        <input class="btn btn-primary" type="button" value="Queen" />
-        <input class="btn btn-primary" type="submit" value="Ariana Grande" />
-        <input class="btn btn-primary" type="reset" value="Imagine Dragon" />
-      </div>
-    </div> -->
             <div class="hide">
                 <div class="row">
                     <div class="col-md-6" id="music-container">
@@ -187,7 +176,7 @@
                 //Dynamic buttons///////////////////////////////////////////////////
 
                 //Default Artists already loaded onto top of page
-                let array = ["Drake", "Taylor Swift", "Beyonce", "Queen", "Ariana Grande", "Imagine Dragons"];
+                let array = ["Drake", "Taylor Swift", "Ariana Grande", "Imagine Dragons", "Eminem"];
 
                 function makeButtons() {
                     for (let i = 0; i < array.length; i++) {
@@ -421,30 +410,7 @@ $.ajax({
   concertFormat.html(concertDiv)
 
 
-//   $("#concertEvent").append(concertDiv);
 
-//   var musicRow = $("<tr>").append(
-//     $("<td>").text(concertDate),
-//     $("<td>").text(concertTime),
-//     $("<td>").text(tourName),
-//     $("<td>").text(venueName),
-//     $("<td>").text(tickOrd),
-// );
-// console.log(concertDiv)
-
-// $("#dateHere").text(musicRow)
-   
-//   console.log("------------------------------") 
-//   console.log("------------------------------")
-
-//   console.log(response._embedded.events)
-//   var concertEvent = response._embedded.events;
-//   concertEvent.length -= 15;
-//   for (var i = 0; i < concertEvent.length; i++) {
-//     //multiple ticket order links [5x]
-//     console.log(concertEvent[i].url);
-    
-//   };
 
   
 });
