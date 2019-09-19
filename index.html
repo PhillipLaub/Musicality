@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>GroupProject</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Muli|Ovo&display=swap" rel="stylesheet">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div id="jumbo-container">
+        <h1 class="display-4"><img class="logo" src="img/logo.png" width="40%"></h1>
+        
+          <h3>Bringing the music to YOU!</h3>
+        </div>
+
+            <!--This is where added a new search bar-->
+            <div class="row input-group mb-3">
+                <form class="col-md-12">
+                    <input type="submit" class="btn input-group-text" id="submit" value="Add Artist">
+                    <input type="text" name="new-btn" id="new-btn" class="form-control"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </form>
+            </div>
+
+            <br>
+
+            <!--This holds the array of artists buttons-->
+            <div id="button-container" class="border1 col-md-8">
+            </div>
+
+            <br>
+
+
+            <div class="hide">
+                <div class="row">
+                    <div class="col-md-6" id="music-container">
+                        <div id="Artist">
+                            <div class="card" style="width: 18rem;">
+                                <h1 id="artist-name"></h1>
+                                <img id="artist-pic" alt="artist headshot" src="">
+
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="col-md-6" id="song-container">
+                            <div id="Songs">
+                                <section>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <h5 id="song-title1"></h5>
+                                            <img id="cover-pic1" alt="album cover1" src="">
+                                            <audio id="audio-source1" src="" controls>
+                                            </audio>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <h5 id="song-title2"></h5>
+                                            <img id="cover-pic2" alt="album cover2" src="">
+                                            <audio id="audio-source2" src="" controls>
+                                            </audio>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <h5 id="song-title3"></h5>
+                                            <img id="cover-pic3" alt="album cover3" src="">
+                                            <audio id="audio-source3" src="" controls>
+                                            </audio>
+                                        </div>
+                                    </div>
+
+                                </section>
+                            </div>
+                        </div>   
+                    </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <br><br><br>
+                                        <div class="card mb-4">
+                                            <div class="card-header">Upcoming Event!</div>
+                                            <div class="card-body">
+                                                <table class="table table-sm table-hover" id="concertDate">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Concert Details</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="dateHere">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                               
+
+                                    <div class="col-md-2"></div>
+                            
+
+
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 id="title-lyrics"></h5>
+                                                <p id="lyrics"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+
+
+                        
+                        <div id="video">
+                            <section id="videos">
+                                <div class="row">
+                                        <div class="col-sm-6"></div>
+                                    <div class="imgcontainer col-sm-2">
+                                        <a class="addLink1" href=""><img class="picture1" src="" alt="thumbnail image1"
+                                                style="width:100%;"></a>
+
+                                        <a class="addLink1" href="">
+                                            <div class="centered" id="title1"></div>
+                                        </a>
+                                    </div>
+
+                                    <div class="imgcontainer col-sm-2">
+                                        <a class="addLink2" href=""><img class="picture2" src="" alt="thumbnail image2"
+                                                style="width:100%;"></a>
+
+                                        <a class="addLink2" href="">
+                                            <div class="centered" id="title2"></div>
+                                        </a>
+                                    </div>
+
+                                    <div class="imgcontainer col-sm-2">
+                                        <a class="addLink3" href=""><img class="picture3" src="" alt="thumbnail image3"
+                                                style="width:100%;"></a>
+
+                                        <a class="addLink3" href="">
+                                            <div class="centered" id="title3"></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </section>
+
+
+                        </div>
+                </div>
+
+            
+
+
+            <!-- Deezer API -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script type="text/javascript">
+
+
+
+                let search = "";
+
+                //Dynamic buttons///////////////////////////////////////////////////
+
+                //Default Artists already loaded onto top of page
+                let array = ["Drake", "Taylor Swift", "Ariana Grande", "Imagine Dragons", "Eminem"];
+
+                function makeButtons() {
+                    for (let i = 0; i < array.length; i++) {
+                        var newButton = $("<button>");
+
+                        newButton.addClass("btn");
+                        newButton.addClass("addtlButton");
+
+                        newButton.text(array[i]);
+                        $("#button-container").append(newButton);
+                    }
+
+                    $(".addtlButton").unbind("click");
+
+                    $(".addtlButton").on("click", function () {
+                        mainContainer($(this).text());
+
+                        //This is the text associated with each artist button click
+                        console.log("This: " + this.innerHTML);
+                        search = this.innerHTML;
+                        console.log("Search variable= " + search)
+
+                        $(".hide").show();
+
+                    });
+
+                }
+
+                function addButton(search) {
+
+                    if (array.indexOf(search) === -1) {
+                        array.push(search);
+                        $("#button-container").empty();
+                        makeButtons();
+
+                    }
+                }
+
+
+                $(document).ready(function () {
+                    makeButtons();
+                    $("#submit").on("click", function () {
+
+                        event.preventDefault();
+
+                        addButton($("#new-btn").val().trim());
+                        $("#new-btn").val("");
+
+
+                    });
+                });
+
+               
+                //IMPORTANT! APIs must be loaded into this function for site to work properly!///////////////////////////////
+                function mainContainer(search) {
+                    newDiv = $("<div>");
+
+
+
+
+                    var settings = {
+                        async: true,
+                        crossDomain: true,
+                        url: "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + search,
+                        method: "GET",
+                        headers: {
+                            "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+                            "x-rapidapi-key": "167f03e5a5mshd9300ee33644670p1f52ebjsn3544f088cb90"
+                        }
+                    };
+                    let artistPic = "";
+                    let artistName = "";
+                    let songTitle1 = "";
+                    let clip1 = "";
+                    let cover1 = "";
+                    let songTitle2 = "";
+                    let clip2 = "";
+                    let cover2 = "";
+                    let songTitle3 = "";
+                    let clip3 = "";
+                    let cover3 = "";
+                    $.ajax(settings).done(function (response) {
+                        console.log(response);
+
+                        console.log("Song Title of first song listed: " + response.data[0].title);
+
+                        console.log("Link to Deezer Page to Play Song: " + response.data[0].link);
+                        console.log("MP3 link to 30 second clip: " + response.data[0].preview);
+                        console.log("Associated album cover: " + response.data[0].album.cover);
+                        console.log("Artist picture: " + response.data[0].artist.picture_big);
+                        console.log("Artist name: " + response.data[0].artist.name);
+                        artistName = response.data[0].artist.name;
+                        $("#artist-name").text(artistName);
+                        artistPic = response.data[0].artist.picture_big;
+                        $("#artist-pic").attr("src", artistPic);
+                        clip1 = response.data[0].preview;
+                        songTitle1 = response.data[0].title;
+                        cover1 = response.data[0].album.cover;
+                        $("#song-title1").text(songTitle1);
+                        $("#audio-source1").attr("src", clip1);
+                        $("#cover-pic1").attr("src", cover1);
+                        clip2 = response.data[1].preview;
+                        songTitle2 = response.data[1].title;
+                        cover2 = response.data[1].album.cover;
+                        $("#song-title2").text(songTitle2);
+                        $("#audio-source2").attr("src", clip2);
+                        $("#cover-pic2").attr("src", cover2);
+                        clip3 = response.data[2].preview;
+                        songTitle3 = response.data[2].title;
+                        cover3 = response.data[2].album.cover;
+                        $("#song-title3").text(songTitle3);
+                        $("#audio-source3").attr("src", clip3);
+                        $("#cover-pic3").attr("src", cover3);
+
+                          // Preview Lyrics/////////////////////////////////////////////////
+                        
+                          var queryURL = "https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?apikey=049c017588dad9f5ab47ce0186fc9eb1&q_artist=" + search + "&q_track=" + songTitle1
+                        $.ajax({
+                            url: queryURL,
+                            method: "GET"
+                        }).then(function(response){
+
+                            let jObj = JSON.parse(response)
+                            console.log(jObj.message.body.lyrics.lyrics_body)
+                            let preview = jObj.message.body.lyrics.lyrics_body
+                            console.log(songTitle1)
+                            $("#lyrics").text(preview)
+                            $("#title-lyrics").text(songTitle1);
+                        })
+                    });
+                    //YouTube API
+                    var settings = {
+                        url:
+                            "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=" +
+                            search +
+                            "&key=AIzaSyBJ_C_266AD4cwwpIU4QaBLkH32DrSrjVE",
+                        method: "GET"
+                    };
+                    $.ajax(settings).done(function (response) {
+                        console.log(response);
+                        console.log(response.items[1].id.videoId);
+                        // console.log("Video Id: " + videoID1);
+                        console.log("Video Title: " + response.items[1].snippet.title);
+                        console.log(
+                            "Video Thumbnail, high quality: " +
+                            response.items[1].snippet.thumbnails.high.url
+                        );
+                        let videoID1 = response.items[1].id.videoId;
+                        let thumb1 = response.items[1].snippet.thumbnails.high.url;
+                        let vidTitle1 = response.items[1].snippet.title;
+                        $(".picture1").attr("src", thumb1);
+                        $(".addLink1").attr("href", "https://www.youtube.com/watch?v=" + videoID1);
+                        $("#title1").text(vidTitle1);
+                        let videoID2 = response.items[2].id.videoId;
+                        let thumb2 = response.items[2].snippet.thumbnails.high.url;
+                        let vidTitle2 = response.items[2].snippet.title;
+                        $(".picture2").attr("src", thumb2);
+                        $(".addLink2").attr("href", "https://www.youtube.com/watch?v=" + videoID2);
+                        $("#title2").text(vidTitle2);
+                        let videoID3 = response.items[3].id.videoId;
+                        let thumb3 = response.items[3].snippet.thumbnails.high.url;
+                        let vidTitle3 = response.items[3].snippet.title;
+                        $(".picture3").attr("src", thumb3);
+                        $(".addLink3").attr("href", "https://www.youtube.com/watch?v=" + videoID3);
+                        $("#title3").text(vidTitle3); 
+                        
+                        
+                      
+                    });
+
+                    
+           
+
+                 
+
+          ///Concert Dates//////////////////////////
+ var queryURL = "https://app.ticketmaster.com/discovery/v2/events?&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&sort=date,asc&keyword=" + search;
+
+//response call for concert events
+$.ajax({
+  url: queryURL,
+  method: "GET"
+}).then(function(response){
+  console.log(response)
+  
+  
+
+ const concertFormat = $("#dateHere")
+  var concertDiv = $("<div>")
+  //date of concert
+  console.log(response._embedded.events[0].dates.start.localDate);
+  var concertDate = response._embedded.events[0].dates.start.localDate;
+  console.log(moment(concertDate).format("MMMM Do YYYY")); 
+  var cDate = moment(concertDate).format("MMMM Do YYYY");
+  var pConcert = $("<p>").text("Date: "+ cDate);
+
+ 
+  concertDiv.append(pConcert);
+
+  //time of concert?
+  console.log(response._embedded.events[0].dates.start.localTime);
+  var concertTime = response._embedded.events[0].dates.start.localTime;
+  console.log(moment(concertTime, 'HH:mm').format('hh:mm a'));
+  var cTime = moment(concertTime, 'HH:mm').format('hh:mm a');
+  var pTime = $("<p>").text("Time: "+ cTime);
+
+  concertDiv.append(pTime);
+
+
+  //name of concert/tour
+  console.log(response._embedded.events[0].name);
+  var tourName = response._embedded.events[0].name;
+  var pTour = $("<p>").text("Tour: "+ tourName);
+
+  concertDiv.append(pTour);
+
+  // venue of concert
+  console.log(response._embedded.events[0]._embedded.venues[0].name);
+  var venueName = response._embedded.events[0]._embedded.venues[0].name;
+  var pVenue = $("<p>").text("Venue: "+ venueName);
+
+  concertDiv.append(pVenue);
+
+  // url to order tickets
+  console.log(response._embedded.events[0].url);
+  var tickOrd = response._embedded.events[0].url;
+  var pTicket = $("<a>").attr("href", tickOrd).text("Click Here for tickets");
+
+  concertDiv.append(pTicket);
+
+  concertFormat.html(concertDiv)
+
+
+
+
+  
+});
+
+
+                }
+
+
+ //////////End of Dynamic Buttons Section///////////////
+
+            </script>
+
+</body>
+<script src="javascript/app.js"></script>
+
+</html>

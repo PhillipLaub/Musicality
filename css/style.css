@@ -1,0 +1,121 @@
+#music-container{
+    text-align: center;
+    font-size: 18px; 
+}
+
+#song-container{
+    text-align: center;
+    float: right;
+    font-size: 18px;
+    color: #15db95;   
+}
+
+.container{
+    background-color: #080f5b !important;
+    color: #15db95;
+}
+
+.card-body{
+   color: whitesmoke;
+   background-color: #0d19a3 !important;
+   border: 1px solid white !important;
+}
+.card {
+    background-color: #0d19a3 !important;
+    border: 1px solid white !important;
+}
+
+#lyrics{
+    font-size: 15px;
+    color: whitesmoke;
+    padding: 5px;   
+    
+}
+
+#tour{
+    margin: 15px;
+    color: #e4c580 !important;
+}
+
+
+.jumbotron{
+    background-color: #080f5b !important;
+    color: #15db95 !important;
+    margin-bottom: 0px !important;
+}
+
+.jumbotron-fluid {
+    padding-right: 40px !important;
+    padding-left: 40px !important;
+}
+
+.form-control{
+    background-color: #080f5b !important;
+    color : white !important;
+}
+
+
+body {
+    margin : -10px !important;
+    background-image: url("../img/background.jpg");
+}
+
+.btn{
+    background-color: #0d19a3 !important;
+    color: #15db95 !important;
+}
+
+.logo{
+    margin-bottom: -1%;
+    margin-left: 30%;
+}
+h3{
+    margin-left: 35%;
+    font-family: 'Ovo', serif;
+    letter-spacing: 1px;
+}
+
+h5, p {
+    font-family: 'Muli', sans-serif;
+    color: white;
+}
+h1 {
+    color: white;
+}
+.card-header {
+    color: white;
+}
+th {
+    color: white;
+}
+.btn btn-primary {
+    font-family: 'Muli', sans-serif;
+}
+a {
+    color: #15db95 !important;
+    font-weight: bold;
+}
+
+audio {
+    width:120px;
+  }
+
+ #artist-pic {
+   height:286px;
+   width:286px;
+ }
+
+ .imgcontainer {
+    text-align: center; 
+    width:120px;
+  } 
+  #videos {
+    margin-top: 30px;
+  }
+
+  
+  .hide{
+      display: none;
+  }
+
+  
