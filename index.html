@@ -135,18 +135,12 @@
                             
 
 
-                                <div class="col-md-4" id="lyrics">
+                                <div class="col-md-4">
                                     <div class="media">
                                         <div class="card">
                                             <div class="card-body">
-                                                <p>Gold jewelry shining so bright
-                                                    Strawberry champagne on ice
-                                                    Lucky for you, that's what I like, that's what I like
-                                                    Lucky for you, that's what I like, that's what I like
-                                                    Sex by the fire at night
-                                                    Silk sheets and diamonds all white
-                                                    Lucky for you, that's what I like, that's what I like
-                                                    Lucky for you, that's what I like, that's what I like</p>
+                                                <h5 id="title"></h5>
+                                                <p id="lyrics"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -258,7 +252,7 @@
                     });
                 });
 
-
+               
                 //IMPORTANT! APIs must be loaded into this function for site to work properly!///////////////////////////////
                 function mainContainer(search) {
                     newDiv = $("<div>");
@@ -356,6 +350,22 @@
                         $(".addLink3").attr("href", "https://www.youtube.com/watch?v=" + videoID3);
                         $("#title3").text(vidTitle3);
                     });
+
+                    
+                     let trackEntry = "paradise";
+
+                    var queryURL = "https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?apikey=049c017588dad9f5ab47ce0186fc9eb1&q_artist=" + search + "&q_track=" + songTitle1
+          $.ajax({
+            url: queryURL,
+            method: "GET"
+          }).then(function(response){
+
+            let jObj = JSON.parse(response)
+            console.log(jObj.message.body.lyrics.lyrics_body)
+            let preview = jObj.message.body.lyrics.lyrics_body
+            console.log(songTitle1)
+            $("#lyrics").text(preview)
+          })
 
                 }
  //////////End of Dynamic Buttons Section///////////////
