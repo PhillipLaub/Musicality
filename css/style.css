@@ -109,4 +109,6 @@ audio {
   }
 
   
-  
+  .hide{
+      display: none;
+  }

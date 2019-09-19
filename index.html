@@ -115,14 +115,10 @@
                                                 <table class="table table-sm table-hover" id="concertDate">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">Date</th>
-                                                            <th scope="col">Time</th>
-                                                            <th scope="col">Tour Name</th>
-                                                            <th scope="col">Venue</th>
-                                                            <th scope="col">Order Tickets</th>
+                                                            <th scope="col">Concert Details</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody id="dateHere">
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -139,7 +135,7 @@
                                     <div class="media">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h5 id="title"></h5>
+                                                <h5 id="title-lyrics"></h5>
                                                 <p id="lyrics"></p>
                                             </div>
                                         </div>
@@ -313,6 +309,22 @@
                         $("#song-title3").text(songTitle3);
                         $("#audio-source3").attr("src", clip3);
                         $("#cover-pic3").attr("src", cover3);
+
+                          // Preview Lyrics/////////////////////////////////////////////////
+                        
+                          var queryURL = "https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?apikey=049c017588dad9f5ab47ce0186fc9eb1&q_artist=" + search + "&q_track=" + songTitle1
+                        $.ajax({
+                            url: queryURL,
+                            method: "GET"
+                        }).then(function(response){
+
+                            let jObj = JSON.parse(response)
+                            console.log(jObj.message.body.lyrics.lyrics_body)
+                            let preview = jObj.message.body.lyrics.lyrics_body
+                            console.log(songTitle1)
+                            $("#lyrics").text(preview)
+                            $("#title-lyrics").text(songTitle1);
+                        })
                     });
                     //YouTube API
                     var settings = {
@@ -348,26 +360,107 @@
                         let vidTitle3 = response.items[3].snippet.title;
                         $(".picture3").attr("src", thumb3);
                         $(".addLink3").attr("href", "https://www.youtube.com/watch?v=" + videoID3);
-                        $("#title3").text(vidTitle3);
+                        $("#title3").text(vidTitle3); 
+                        
+                        
+                      
                     });
 
                     
-                     let trackEntry = "paradise";
+           
 
-                    var queryURL = "https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?apikey=049c017588dad9f5ab47ce0186fc9eb1&q_artist=" + search + "&q_track=" + songTitle1
-          $.ajax({
-            url: queryURL,
-            method: "GET"
-          }).then(function(response){
+                 
 
-            let jObj = JSON.parse(response)
-            console.log(jObj.message.body.lyrics.lyrics_body)
-            let preview = jObj.message.body.lyrics.lyrics_body
-            console.log(songTitle1)
-            $("#lyrics").text(preview)
-          })
+          ///Concert Dates//////////////////////////
+ var queryURL = "https://app.ticketmaster.com/discovery/v2/events?&apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&locale=*&sort=date,asc&keyword=" + search;
+
+//response call for concert events
+$.ajax({
+  url: queryURL,
+  method: "GET"
+}).then(function(response){
+  console.log(response)
+  
+  
+
+ const concertFormat = $("#dateHere")
+  var concertDiv = $("<div>")
+  //date of concert
+  console.log(response._embedded.events[0].dates.start.localDate);
+  var concertDate = response._embedded.events[0].dates.start.localDate;
+  console.log(moment(concertDate).format("MMMM Do YYYY")); 
+  var cDate = moment(concertDate).format("MMMM Do YYYY");
+  var pConcert = $("<p>").text("Date: "+ cDate);
+
+ 
+  concertDiv.append(pConcert);
+
+  //time of concert?
+  console.log(response._embedded.events[0].dates.start.localTime);
+  var concertTime = response._embedded.events[0].dates.start.localTime;
+  console.log(moment(concertTime, 'HH:mm').format('hh:mm a'));
+  var cTime = moment(concertTime, 'HH:mm').format('hh:mm a');
+  var pTime = $("<p>").text("Time: "+ cTime);
+
+  concertDiv.append(pTime);
+
+
+  //name of concert/tour
+  console.log(response._embedded.events[0].name);
+  var tourName = response._embedded.events[0].name;
+  var pTour = $("<p>").text("Tour: "+ tourName);
+
+  concertDiv.append(pTour);
+
+  // venue of concert
+  console.log(response._embedded.events[0]._embedded.venues[0].name);
+  var venueName = response._embedded.events[0]._embedded.venues[0].name;
+  var pVenue = $("<p>").text("Venue: "+ venueName);
+
+  concertDiv.append(pVenue);
+
+  // url to order tickets
+  console.log(response._embedded.events[0].url);
+  var tickOrd = response._embedded.events[0].url;
+  var pTicket = $("<a>").attr("href", tickOrd).text("Click Here for tickets");
+
+  concertDiv.append(pTicket);
+
+  concertFormat.html(concertDiv)
+
+
+//   $("#concertEvent").append(concertDiv);
+
+//   var musicRow = $("<tr>").append(
+//     $("<td>").text(concertDate),
+//     $("<td>").text(concertTime),
+//     $("<td>").text(tourName),
+//     $("<td>").text(venueName),
+//     $("<td>").text(tickOrd),
+// );
+// console.log(concertDiv)
+
+// $("#dateHere").text(musicRow)
+   
+//   console.log("------------------------------") 
+//   console.log("------------------------------")
+
+//   console.log(response._embedded.events)
+//   var concertEvent = response._embedded.events;
+//   concertEvent.length -= 15;
+//   for (var i = 0; i < concertEvent.length; i++) {
+//     //multiple ticket order links [5x]
+//     console.log(concertEvent[i].url);
+    
+//   };
+
+  
+});
+
 
                 }
+
+
  //////////End of Dynamic Buttons Section///////////////
 
             </script>
