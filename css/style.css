@@ -17,15 +17,19 @@
 
 .card-body{
    color: whitesmoke;
-   background-color: #0d19a3;
+   background-color: #0d19a3 !important;
+   border: 1px solid white !important;
 }
-
+.card {
+    background-color: #0d19a3 !important;
+    border: 1px solid white !important;
+}
 
 #lyrics{
     font-size: 15px;
     color: whitesmoke;
-        margin: 60px;
-        padding: 5px;
+    padding: 5px;   
+    
 }
 
 #tour{
@@ -51,15 +55,9 @@
 }
 
 
-.row {
-     /* background-color:#0d19a3;  */
-    background-image: url("../img/background.jpg");
-}
-
-
 body {
     margin : -10px !important;
-
+    background-image: url("../img/background.jpg");
 }
 
 .btn{
@@ -79,25 +77,32 @@ h3{
 
 h5, p {
     font-family: 'Muli', sans-serif;
+    color: white;
 }
-
+h1 {
+    color: white;
+}
+.card-header {
+    color: white;
+}
+th {
+    color: white;
+}
 .btn btn-primary {
     font-family: 'Muli', sans-serif;
+}
+a {
+    color: #15db95 !important;
+    font-weight: bold;
 }
 
 audio {
     width:120px;
-    
   }
- /* h5 {
-  font-size: 0.8rem;
- } */ 
-/* Need to change to specific id */
-
 
  #artist-pic {
-   height:300px;
-   width:300px;
+   height:286px;
+   width:286px;
  }
 
  .imgcontainer {
@@ -105,10 +110,12 @@ audio {
     width:120px;
   } 
   #videos {
-    border: 1px solid black;
+    margin-top: 30px;
   }
 
   
   .hide{
       display: none;
   }
+
+  
