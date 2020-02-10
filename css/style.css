@@ -1,3 +1,12 @@
+html {
+  /* background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; */
+  background-color: #080f5b !important;
+  height:100vh;
+}
+
 #music-container{
     text-align: center;
     font-size: 18px; 
